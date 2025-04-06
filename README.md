@@ -1,7 +1,9 @@
 ***Thanks for the help MateoConLechuga***
 
 
+
 You have to compile the program yourself using Toolchain
+
 
 
 Overview:
@@ -13,6 +15,8 @@ It is a precursor to a larger project I have planned -- a video player named Cin
 Because of this, expect to see improvements in speed in the future.
 
 Currently, it is in a very early stage; You must compile the program yourself.
+
+
 
 
 What do You Need?
@@ -40,10 +44,15 @@ Set Up:
 * You may need to install a shell like Cesium to run the program if you have a newer calculator
 
 
+
+
 How to Use:
 
 * When you run the program, it waits for a USB device to be connected
+  
 * Connect your USB thumb drive, and it will display your image.
+
+
 
 
 Possible/Future improvements:
