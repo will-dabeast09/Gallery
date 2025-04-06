@@ -7,16 +7,19 @@ You have to compile the program yourself using Toolchain
 Overview:
 
 Gallery is an image viewer for the TI-84 Plus CE that reads an image from a thumb drive.
+
 It is a precursor to a larger project I have planned -- a video player named Cinema.
+
 Because of this, expect to see improvements in speed in the future.
+
 Currently, it is in a very early stage; You must compile the program yourself.
 
 
 What do You Need?
 
-*CE C Toolchain installed and configured (You may need to use the nightly version)
-*USB thumbdrive - some are faster than others - there is a table here - https://ce-programming.github.io/toolchain/libraries/msddrvce.html
-     -Adapter for the thumb drive (A to Mini B)
+* CE C Toolchain installed and configured (You may need to use the nightly version)
+* USB thumbdrive - some are faster than others - there is a table here - https://ce-programming.github.io/toolchain/libraries/msddrvce.html
+     * Adapter for the thumb drive (A to Mini B)
 
 
 Set Up:
