@@ -22,12 +22,18 @@ What do You Need?
 Set Up:
 
 *Create a 320 x 240 resoultion image
+
 *Replace image.png located in "src/gfx" with your image. (It must be named image in this version of Gallery)
+
 *In the CE C Toolchain command prompt, with the directory set to gallery, run "make gfx"
+
 *Transfer "image.bin", which will be generated, to your FAT32 formatted drive
      *Make sure the image.bin is in the first partition, as that is where the calculator reads from
+     
 *Back in the Toolchain command prompt, run "make"
+
 *Using TI Connect CE, transfer the file to your calculator
+
 *You may need to install a shell like Cesium to run the program if you have a newer calculator
 
 
