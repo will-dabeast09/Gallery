@@ -1,10 +1,9 @@
 ***Thanks for the help MateoConLechuga***
 
-
+---
 
 You have to compile the program yourself using Toolchain
-
-
+---
 
 Overview:
 
@@ -16,8 +15,7 @@ Because of this, expect to see improvements in speed in the future.
 
 Currently, it is in a very early stage; You must compile the program yourself.
 
-
-
+---
 
 What do You Need?
 
@@ -25,6 +23,7 @@ What do You Need?
 * USB thumbdrive - some are faster than others - there is a table here - https://ce-programming.github.io/toolchain/libraries/msddrvce.html
      * Adapter for the thumb drive (A to Mini B)
 
+---
 
 Set Up:
 
@@ -43,8 +42,7 @@ Set Up:
 
 * You may need to install a shell like Cesium to run the program if you have a newer calculator
 
-
-
+---
 
 How to Use:
 
@@ -52,8 +50,7 @@ How to Use:
   
 * Connect your USB thumb drive, and it will display your image.
 
-
-
+---
 
 Possible/Future improvements:
 
