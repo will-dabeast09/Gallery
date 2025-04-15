@@ -24,6 +24,21 @@ What do You Need?
      * Adapter for the thumb drive (A to Mini B)
 
 ---
+Usb Set-Up:
+In Windows Command Prompt:
+
+diskpart
+
+list disk               # Find your USB (e.g., Disk 2)
+select disk 2           # Replace with your actual disk number
+clean                   # Removes all partitions — now the drive is "unformatted"
+exit
+
+
+https://hddguru.com/software/HDD-Raw-Copy-Tool/
+
+
+---
 
 Set Up:
 
