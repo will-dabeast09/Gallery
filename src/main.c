@@ -6,8 +6,6 @@ typedef struct global global_t;
 #include <tice.h>
 #include <graphx.h>
 
-#include <ti/getcsc.h>
-
 #include <stdio.h>
 #include <stdbool.h>
 #include <stddef.h>
@@ -62,6 +60,7 @@ static usb_error_t handleUsbEvent(usb_event_t event, void *event_data,
 
 void palette_callback(msd_error_t error, struct msd_transfer *xfer) {
     if (error == MSD_SUCCESS) {
+        xfer->lba += 151;
         *(bool*)xfer->userptr = true;
     } else {
         putstr("error reading palette");
@@ -70,6 +69,7 @@ void palette_callback(msd_error_t error, struct msd_transfer *xfer) {
 
 void image_callback(msd_error_t error, struct msd_transfer *xfer) {
     if (error == MSD_SUCCESS) {
+        xfer->lba += 151;
         *(bool*)xfer->userptr = true;
     } else {
         putstr("error reading image");
@@ -81,14 +81,11 @@ int main(void)
     //variable definitions
         static char buffer[212];
         static global_t global;
-        uint32_t total_images;
         msd_transfer_t xfer_palette;
         msd_transfer_t xfer_image;
         uint16_t palette[256];
         bool copy_palette = false;
         bool render = false;
-        int frame = 0;
-        uint8_t key = 0;
         msd_info_t msdinfo;
         usb_error_t usberr;
         msd_error_t msderr;
@@ -105,7 +102,7 @@ int main(void)
         xfer_image.callback = image_callback;
         xfer_image.userptr = &render;
 
-        //usb & msd initialization
+    //usb & msd initialization
         memset(&global, 0, sizeof(global_t));
         os_SetCursorPos(1, 0);
 
@@ -169,13 +166,14 @@ int main(void)
 
         os_ClrHome();
 
+
     //graphx
     {
         gfx_Begin();
         gfx_SwapDraw();
 
         xfer_palette.buffer = palette;
-        //show the first image
+        
         {
             xfer_image.buffer = gfx_vbuffer;
             
@@ -203,49 +201,36 @@ int main(void)
             gfx_SwapDraw();
             render = false;
             copy_palette = false;
-        }
-
-        while (key != sk_Clear)
-        {
-
-            while (key != sk_Clear) {
-                key = os_GetCSC();
-                if (key == sk_Up && xfer_palette.lba > 0) {
-                    xfer_palette.lba -= 151;
-                    xfer_image.lba -= 151;
-                    break;
-                }
-                else if (key == sk_Down)
-                {
-                    xfer_palette.lba += 151;
-                    xfer_image.lba += 151;
-                    break;
-                }
-                
-            }
 
             xfer_image.buffer = gfx_vbuffer;
             
             msd_ReadAsync(&xfer_palette);
-            if (msderr != MSD_SUCCESS) {
-                putstr("error queueing msd (palette)");
-                goto msd_error;
-            }
             msd_ReadAsync(&xfer_image);
-            if (msderr != MSD_SUCCESS) {
-                putstr("error queueing msd (image)");
-                goto msd_error;
-            }
 
             while (!copy_palette || !render) {
                 usb_HandleEvents();
             }
 
+        }
+
+        while (!os_GetCSC())
+        {
             gfx_SetPalette(palette, 512, 0);
             gfx_SwapDraw();
             render = false;
             copy_palette = false;
+
+            xfer_image.buffer = gfx_vbuffer;
+            
+            msd_ReadAsync(&xfer_palette);
+            msd_ReadAsync(&xfer_image);
+
+            while (!copy_palette || !render) {
+                usb_HandleEvents();
+            }
+
         }
+            
         
         gfx_End();
     }
