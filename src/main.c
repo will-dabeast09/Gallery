@@ -81,13 +81,11 @@ int main(void)
     //variable definitions
         static char buffer[212];
         static global_t global;
-        uint32_t total_images;
         msd_transfer_t xfer_palette;
         msd_transfer_t xfer_image;
         uint16_t palette[256];
         bool copy_palette = false;
         bool render = false;
-        int frame = 0;
         uint8_t key = 0;
         msd_info_t msdinfo;
         usb_error_t usberr;
